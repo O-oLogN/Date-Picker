@@ -1,0 +1,398 @@
+:root {
+    --background-first-gradient-color: hsla(313, 35%, 69%, 0.5);
+    --background-second-gradient-color: hsla(49, 35%, 78%, 0.5);
+    --background-third-gradient-color:hsla(213, 49%, 65%, 0.5);
+    --title-first-gradient-color:rgba(103, 30, 117, 1);
+    --title-second-gradient-color:rgba(252, 76, 2, 1);
+    --information-bar-text-color: white;
+    --table-border: rgb(7, 10, 33);
+    --weekend-font-color: #e71d1dfc;
+    --out-of-current-month-text-color: rgba(0, 0, 0, 0.4);
+    --hovering-cell-background-color: #9fa8c666;
+    --click-cell-background-color: #FF5F6D;
+    --selected-cell-background-color:red;
+    --hovering-cell-font-color: black; 
+    --click-cell-font-color: white;
+    --selected-cell-font-color:white;
+    --navigation-bar-color: rgba(238, 125, 26, 0.236);
+    --mountain-color:rgb(202, 185, 185);
+    --mountain-peak-color: white;
+    --snow-color: white;
+    --wind-color: white;
+}
+
+@font-face {
+    font-family: 'Pixel';
+    src: url('01 Digit.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Title';
+    src: url('Title.ttf');
+}
+
+@font-face {
+    font-family: 'Number';
+    src: url('DMSerifText-Regular.ttf');
+}
+
+body {
+    background-image: linear-gradient(90deg, var(--background-first-gradient-color), var(--background-second-gradient-color), var(--background-third-gradient-color));
+    background-size: 400% 400%;
+    animation: gradient-move 15s ease-in-out infinite;
+}
+
+@keyframes gradient-move {
+    0% {
+        background-position: left;
+    }
+    50% {
+        background-position: right;
+    }
+}
+
+h1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: intro-first 10s;
+}
+
+h1 span {
+    position: relative;
+    width: 100vw;
+    text-align: center;
+    font-family: Title;
+    font-size: 100px;
+    background-image: linear-gradient(109.6deg, var(--title-first-gradient-color) 11.2%, var(--title-second-gradient-color) 91.1%);
+    -webkit-background-clip: text;
+    color: transparent;
+    animation: intro-second 4s;
+}
+
+span {
+    font-size: 8vh;
+    text-align: center;
+}
+
+@keyframes intro-first {
+    0% {
+        clip-path: circle(2%);
+    }
+    100% {
+        clip-path: circle(100%);
+    }
+}
+
+@keyframes intro-second {
+    0% {
+        left: 140px;
+    }
+    25% {
+        left: -140px;
+    }
+    100% {
+        left: 0px;
+    }
+
+}
+
+.container {    
+    width: 100vw;
+    max-height: 50vh;
+    position: relative;
+    top: 2vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.info-bar, .navigation-bar {
+    position: relative;
+    width: 298.5px;     
+}
+
+.info-bar { 
+    display: flex;
+    flex-wrap: wrap;
+    height: 40px;
+    border-radius: 10px 10px 0 0;
+}
+
+.info-bar span {
+    width: 303.8px;
+    font-family: 'Pixel';
+    font-size: 3.0vh;
+    padding-top: 10px;
+    color: var(--information-bar-text-color);
+    z-index: 1000;
+}
+    
+.mountain {
+    position: relative;
+    height: 0;
+    width: 0;
+}
+
+.mountain.first {
+    bottom: 18px;
+    border-right: 15px solid transparent;
+    border-left: 15px solid transparent;
+    border-bottom: 30px solid var(--mountain-color);
+    left: 20px;
+}
+
+.mountain.second {
+    bottom: 13px;
+    border-right: 12px solid transparent;
+    border-left: 12px solid transparent;
+    border-bottom: 25px solid var(--mountain-color);
+    left: 12px;
+
+}
+
+.mountain.mountain-peak.first {
+    border-right: 7px solid transparent;
+    border-left: 7px solid transparent;
+    border-bottom: 12px solid var(--mountain-peak-color);    
+    left: -6px;
+    bottom: -1px;
+}
+
+.mountain.mountain-peak.second {
+    border-right: 5px solid transparent;
+    border-left: 5px solid transparent;
+    border-bottom: 10px solid var(--mountain-peak-color);    
+    left: -5px;
+    bottom: 1px;
+}
+
+.snow {
+    position: absolute;
+    background-color: var(--snow-color);
+    z-index: 1;
+    border-radius: 360px;
+    opacity: 0;
+    top: 0
+}
+
+.snow.big {
+    width: 3px;
+    height: 3px;
+}
+
+.snow.small {
+    width: 2px;
+    height: 2px;
+}
+
+@keyframes snowrain {
+    0% {
+        top: 0;
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(40px);
+    }
+}
+
+.pine-tree {
+    position: absolute;
+    height: 30px;
+    width: 25px;
+    bottom: 0;
+    right: 10px;
+}
+
+.christmas {
+    position: absolute;
+    height: 40px;
+    width: 40px;
+    z-index: 0;
+    overflow: hidden;
+    animation: give-gift 5s infinite ease-in-out;
+}
+
+@keyframes give-gift {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(270px);
+        opacity: 0;
+    }
+}
+
+.sun {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    left: 1px;
+    top: 1px;
+    animation: spin 4s infinite;
+}
+
+@keyframes spin {
+    50% {
+        transform: rotate(180deg);        
+    }
+}
+
+.vapour {
+    height: 20px;
+    width: 20px;
+    z-index: 1;
+    position: absolute;
+    bottom: 0;
+    opacity: 0;
+}
+
+@keyframes evaporate {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 0.5;
+        transform: translateY(-15px);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+}
+
+.tree {
+    position: absolute;
+    height: 35px;
+    width: 20px;
+    bottom: -2px;
+    animation: fluctuate 3s infinite ease-in-out;
+}
+
+.tree.first {
+    left: 20px;
+}
+
+.tree.second {
+    left: 35px;
+}
+
+@keyframes fluctuate {
+    50% {
+        transform: rotate(15deg);  
+    }
+}
+
+.wind {
+    position: absolute;
+    height: 0.5px;
+    width: 20px;
+    background-color: var(--wind-color);
+    left: 0;
+    opacity: 0;
+}
+
+@keyframes blow {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(290px);
+    }
+}
+
+.leaf {
+    position: absolute;
+    opacity: 0;
+}
+
+.navigation-bar {
+    height: 25px;
+    background-color: var(--navigation-bar-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0 0 10px 10px;
+}
+
+table {
+    /* border: 1px solid var(--table-border); */
+    /* box-shadow: 5px 0px 10px gray; */
+    background-color: white;
+}
+
+.header th {
+    width: 30px;
+    padding: 5px;
+    /* border-right: 1.5px var(--table-border) solid;     */
+    /* border-bottom: 1.5px var(--table-border) solid; */
+}
+
+.header th:last-of-type {
+    border-right: 0;
+}
+
+.header span {
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 17px;
+}
+
+.header .weekend {
+    color: var(--weekend-font-color);
+}
+
+td {
+    text-align: center;  
+    padding: 10px 5px;
+    border-radius: 8px;
+    font-family: 'Number';
+}
+
+tr:last-of-type td {
+    border-bottom: none;
+} 
+
+tr td:last-of-type {
+    border-right: none;
+}
+
+tr .out-of-current-month {
+    color: var(--out-of-current-month-text-color);
+}
+
+td:hover {
+    background-color: var(--hovering-cell-background-color);
+    color: var(--hovering-cell-font-color);
+}
+
+td:active {
+    background-color: var(--active-cell-background-color);
+    color: var(--active-cell-font-color);
+}
+
+img {
+    height: 15px;
+    width: 15px;
+}
+
+button {
+    background: transparent;
+    border: none;
+    margin: 30px;
+}
+
+td.selected {
+    background-color: var(--selected-cell-background-color);
+    color: var(--selected-cell-font-color);
+}
